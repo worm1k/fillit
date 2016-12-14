@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-static size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int			i;
 
@@ -74,7 +74,7 @@ static int		fl_tetramine(char *buf)
 	}
 	printf("joins: %d\n", joins);
 	if (joins == 6 || joins == 8)
-		return (1)
+		return (1);
 	return (0);
 }
 

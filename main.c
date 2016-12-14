@@ -3,15 +3,18 @@
 int			main()
 {
 	int		fd;
-	char	buf[100];
+	char	buf[22];
 	int		len;
 
-	for (int i = 0; i < 100; i++) buf[i++] = 0;
+	for (int i = 0; i < 22; i++) buf[i++] = 0;
 	fd = open("tetra.tx", O_RDONLY);
 	len = read(fd, buf, 21);
-	while (len > 19)
+	char *map = fl_generate_map(5);
+	printf("%s", map);
+	/*
+	while (len)
 	{
-		if (!fl_isvalid(buf))
+		if (len < 20 || !fl_isvalid(buf))
 		{
 			printf("Error\n");
 			return (1);
@@ -19,6 +22,7 @@ int			main()
 		printf("len: %d\n%s", len, buf);
 		len = read(fd, buf, 21);
 	}
+	*/
 	close(fd);
 	return 0;
 }

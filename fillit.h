@@ -6,7 +6,20 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
+# include <stdlib.h>
 
-int		fl_isvalid(char *buf);
-
+int				fl_isvalid(char *buf);
+size_t			ft_strlen(const char *s);
+char			*fl_generate_map(size_t n);
+typedef struct	s_tetra
+{
+	char			*str;
+	int				len;
+	int				hei;
+}					t_tetra;
+typedef struct		s_list
+{
+	t_tetra			*tetra;
+	struct s_list	*next;
+}					t_list;
 #endif
