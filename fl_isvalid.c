@@ -1,18 +1,9 @@
 #include <stdio.h>
-
-size_t	ft_strlen(const char *s)
-{
-	int			i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+#include "libft.h"
 
 static int		fl_is4x4(char *buf)
 {
-	if (ft_strlen(buf) < 20)
+	if (strlen(buf) < 20)
 		return (0);
 	if (buf[4] != '\n'
 		|| buf[9] != '\n'

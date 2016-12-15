@@ -1,12 +1,18 @@
 #include "fillit.h"
+#include "libft.h"
 
-char		*fl_generate_map(size_t n)
+char		*fl_getmap(size_t n)
+{
+	return (fl_generate_nmap(n, n));
+}
+
+char		*fl_generate_nmap(size_t x, size_t y)
 {
 	char	*res;
 	size_t	len;
 	size_t	i;
 
-	len = (n + 1) * n;
+	len = (x + 1) * y;
 
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	memset(res, '.', len);
@@ -14,7 +20,7 @@ char		*fl_generate_map(size_t n)
 	i = 0;
 	while (i < len)
 	{
-		if ((i + 1) % (n + 1) == 0)
+		if ((i + 1) % (x + 1) == 0)
 			res[i] = '\n';
 		i++;
 	}
