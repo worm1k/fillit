@@ -1,20 +1,20 @@
 #include "fillit.h"
 #include "libft.h"
 
-int			main()
+int			main(int argc, char **argv)
 {
 	int		fd;
 	char	buf[22];
 	int		len;
 	t_list	*lst;
-	/*
+	
 
 	for (int i = 0; i < 22; i++) buf[i++] = 0;
 	fd = open("tetra.tx", O_RDONLY);
 	len = read(fd, buf, 21);
-	char *map = fl_generate_nmap(5, 10);
+	char *map = fl_getmap(atoi(argv[1]));
 	printf("%s", map);
-	
+	/*
 	while (len)
 	{
 		if (len < 20 || !fl_isvalid(buf))

@@ -11,11 +11,11 @@ void	fl_lstpush_back(t_list *lst, char *buf)
 		lst = lst->next;
 	}
 	lst->next = (t_list *)malloc(sizeof(t_list));
-	lst->next->tetra->str = strdup(buf);
+	lst->next->tetra->str = ft_strdup(buf);
 	lst->next->next = NULL;
 }
-/*
-t_tetra	*fl_trimtetra(char *buf)
+
+t_tetra		*fl_trimtetra(char *buf)
 {
-	int
-}*/
+	int		
+}

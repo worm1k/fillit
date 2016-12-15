@@ -15,14 +15,15 @@ char		*fl_generate_nmap(size_t x, size_t y)
 	len = (x + 1) * y;
 
 	res = (char *)malloc(sizeof(char) * (len + 1));
-	memset(res, '.', len);
+	if (!res)
+		return (0);
+	ft_memset(res, '.', len);
 	res[len] = '\0';
-	i = 0;
+	i = x;
 	while (i < len)
 	{
-		if ((i + 1) % (x + 1) == 0)
-			res[i] = '\n';
-		i++;
+		res[i] = '\n';
+		i += x + 1;
 	}
 	return (res);
 }
