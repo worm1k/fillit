@@ -2,20 +2,69 @@
 #include "fillit.h"
 #include "libft.h"
 
-void	fl_lstpush_back(t_list *lst, char *buf)
+int			fl_isfree(char c)
 {
-	if (!lst)
-		lst = (t_list *)malloc(sizeof(t_list));
-	while (lst->next)
-	{
-		lst = lst->next;
-	}
-	lst->next = (t_list *)malloc(sizeof(t_list));
-	lst->next->tetra->str = ft_strdup(buf);
-	lst->next->next = NULL;
+	if (c == '.' || c == '*')
+		return (1);
+	return (0);
 }
 
-t_tetra		*fl_trimtetra(char *buf)
+void		fl_mark_extra_rows(char *buf)
 {
-	int		
+	int		i;
+
+	i = 0;
+	while(i < 16)
+	{
+		if (fl_isfree(buf[i]) && fl_isfree(buf[i + 1])
+		&& fl_isfree(buf[i + 2]) && fl_isfree(buf[i + 3]))
+				ft_memset(buf + i, '*', 5);
+		i += 5;
+	}
+	buf[20] = '\0';
+}
+
+void		fl_mark_extra_cols(char *buf)
+{
+	int		i;
+
+	i = 0;
+	while(i < 4)
+	{
+		if (fl_isfree(buf[i]) && fl_isfree(buf[i + 5])
+		&& fl_isfree(buf[i + 10]) && fl_isfree(buf[i + 15]))
+			{
+				buf[i] = '*';
+				buf[i + 5] = '*';
+				buf[i + 10] = '*';
+				buf[i + 15] = '*';
+			}
+		i++;
+	}
+}
+
+void		fl_add_tetra(t_lst **lst, char *buf, char letter)
+{
+	char	res[10];
+	int		i;
+	int		j;
+	int		len;
+
+	fl_mark_extra_rows(buf);
+	fl_mark_extra_cols(buf);
+	i = 0;
+	j = 0;
+	ft_bzero(res, 10);
+	while (buf[i])
+	{
+		if (buf[i] == '#')
+			res[j++] = letter;
+		if (buf[i] == '.' || buf[i] == '\n')
+		{
+			res[j++] = buf[i];
+		}
+		i++;
+	}
+	len = ft_strchr(res, '\n') - res;
+	fl_lstpush_back(lst, fl_tetranew(res, len, fl_get_height(res)));
 }

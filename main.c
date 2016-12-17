@@ -6,15 +6,17 @@ int			main(int argc, char **argv)
 	int		fd;
 	char	buf[22];
 	int		len;
-	t_list	*lst;
+	t_lst	*head;
+	char	letter;
+	char	*map;
 	
-
-	for (int i = 0; i < 22; i++) buf[i++] = 0;
+	map = fl_getmap(10);
+	head = 0;
+	letter = 'A';
+	ft_bzero(buf, 22);
 	fd = open("tetra.tx", O_RDONLY);
 	len = read(fd, buf, 21);
-	char *map = fl_getmap(atoi(argv[1]));
-	printf("%s", map);
-	/*
+	
 	while (len)
 	{
 		if (len < 20 || !fl_isvalid(buf))
@@ -22,10 +24,14 @@ int			main(int argc, char **argv)
 			printf("Error\n");
 			return (1);
 		}
-		printf("len: %d\n%s", len, buf);
+		fl_add_tetra(&head, buf, letter++);
+		ft_bzero(buf, 21);
 		len = read(fd, buf, 21);
 	}
-	
-	close(fd);*/
+	close(fd);
+
+	printf("LIST:\n");
+	(void)fl_solve(map, 20, head);
+	printf("%s\n", map);
 	return 0;
 }

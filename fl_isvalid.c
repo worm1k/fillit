@@ -63,7 +63,6 @@ static int		fl_tetramine(char *buf)
 		}
 		i++;
 	}
-	printf("joins: %d\n", joins);
 	if (joins == 6 || joins == 8)
 		return (1);
 	return (0);
@@ -73,12 +72,11 @@ int				fl_isvalid(char *buf)
 {
 	if (fl_is4x4(buf))
 	{
-		printf("1. OK\n");
 		if(fl_has_right_chars(buf))
 		{
-			printf("2. OK\n");
 			if(fl_tetramine(buf))
 			{
+				printf("3. Joins: OK\n");
 				return (1);
 			}
 		}
