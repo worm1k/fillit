@@ -33,6 +33,7 @@ void		fl_lstpush_back(t_lst **lst, t_tetra *tetra)
 	{
 		printf("CREATED\n");
 		*lst = fl_lstnew(tetra);
+		printf("%s========\n", tetra->str);
 		return ;
 	}
 	while ((*lst)->next)
@@ -41,14 +42,18 @@ void		fl_lstpush_back(t_lst **lst, t_tetra *tetra)
 	}
 	printf("PUSHED\n");
 	(*lst)->next = fl_lstnew(tetra);
+	printf("%s========\n", (*lst)->next->tetra->str);
 	*lst = tmp;
 }
 
 void		fl_print_lst(t_lst *lst)
 {
+	int i = 0;
 	while (lst)
 	{
+		printf("#%d:\n", i++);
 		printf("%s\n", lst->tetra->str);
+		printf("==========\n");
 		lst = lst->next;
 	}
 }
