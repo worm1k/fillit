@@ -9,8 +9,10 @@ int			main(int argc, char **argv)
 	t_lst	*head;
 	char	letter;
 	char	*map;
-	
-	map = fl_getmap(10);
+	int		n;
+
+	n = 2;
+	map = fl_getmap(n);
 	head = 0;
 	letter = 'A';
 	ft_bzero(buf, 22);
@@ -28,10 +30,12 @@ int			main(int argc, char **argv)
 		ft_bzero(buf, 21);
 		len = read(fd, buf, 21);
 	}
+
+	while (!fl_solve(map, n, head))
+	{
+		fl_realloc(&map, ++n);
+	}
 	close(fd);
 
-	printf("LIST:\n");
-	(void)fl_solve(map, 20, head);
-	printf("%s\n", map);
-	return 0;
+	return (0);
 }

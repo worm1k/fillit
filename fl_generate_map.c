@@ -1,6 +1,13 @@
 #include "fillit.h"
 #include "libft.h"
 
+void		fl_realloc(char **map, int n)
+{
+	free(*map);
+	*map = fl_generate_nmap(n, n);
+	printf("GENERATED%d\n", n);
+}
+
 char		*fl_getmap(size_t n)
 {
 	return (fl_generate_nmap(n, n));

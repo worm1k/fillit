@@ -64,7 +64,7 @@ int		fl_fits(char *map, int n, int index, t_tetra *tetra)
 	mem = index;
 	while(fig[i] != '\0')
 	{
-		if (ft_isupper(fig[i]) && map[index] != '.')
+		if (ft_isupper(fig[i]) && (map[index] != '.' || map[index] == fig[i]))
 			return (0);
 		if (fig[i] == '\n')
 		{
@@ -80,17 +80,19 @@ int		fl_fits(char *map, int n, int index, t_tetra *tetra)
 	return (1);
 }
 
-int			fl_free_slot(char *map, int n, t_tetra *tetra)
+int			fl_free_slot(char *map, int n, int index, t_tetra *tetra)
 {
 	int		i;
-	int		j;
 
-	i = 0;
+	i = index;
 	while (map[i] != '\0')
 	{
-		j = 0;
-		if (fl_fits(map, n, i, tetra))
-			return (i);
+		if (i % (n + 1) + tetra->len < n + 1
+			&& i / (n + 1) + tetra->hei < n + 1)
+		{
+			if (fl_fits(map, n, i, tetra))
+				return (i);
+		}
 		i++;
 	}
 	return (-1);
