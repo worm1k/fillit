@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
-
 
 static t_lst	*fl_lstnew(t_tetra *tetra)
 {
@@ -21,7 +19,6 @@ static t_lst	*fl_lstnew(t_tetra *tetra)
 	res = (t_lst *)malloc(sizeof(t_lst));
 	res->tetra = tetra;
 	res->next = NULL;
-
 	return (res);
 }
 

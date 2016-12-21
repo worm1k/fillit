@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
 
 void		fl_realloc(char **map, int n)
 {
@@ -32,7 +31,6 @@ char		*fl_generate_nmap(int x, int y)
 	int		i;
 
 	len = (x + 1) * y;
-
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (!res)
 		return (0);

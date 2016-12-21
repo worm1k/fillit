@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
 
 void		ft_putchar_fd(char c, int fd)
 {
@@ -19,7 +19,7 @@ void		ft_putchar_fd(char c, int fd)
 
 void		ft_putstr_fd(char const *s, int fd)
 {
-	int 	i;
+	int		i;
 
 	if (!s)
 		return ;

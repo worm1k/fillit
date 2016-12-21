@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fl_solve.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/21 13:52:48 by abykov            #+#    #+#             */
+/*   Updated: 2016/11/21 13:52:48 by abykov           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
 
 static void	fl_delete(char *map, int n, int index, t_tetra *tetra)
 {
@@ -11,7 +21,7 @@ static void	fl_delete(char *map, int n, int index, t_tetra *tetra)
 	i = 0;
 	fig = tetra->str;
 	mem = index;
-	while(fig[i] != '\0')
+	while (fig[i] != '\0')
 	{
 		if (ft_isupper(fig[i]))
 			map[index] = '.';
@@ -27,6 +37,7 @@ static void	fl_delete(char *map, int n, int index, t_tetra *tetra)
 		i++;
 	}
 }
+
 static void	fl_insert(char *map, int n, int index, t_tetra *tetra)
 {
 	int		i;
@@ -36,7 +47,7 @@ static void	fl_insert(char *map, int n, int index, t_tetra *tetra)
 	i = 0;
 	fig = tetra->str;
 	mem = index;
-	while(fig[i] != '\0')
+	while (fig[i] != '\0')
 	{
 		if (ft_isupper(fig[i]))
 			map[index] = fig[i];
@@ -62,7 +73,7 @@ static int	fl_fits(char *map, int n, int index, t_tetra *tetra)
 	i = 0;
 	fig = tetra->str;
 	mem = index;
-	while(fig[i] != '\0')
+	while (fig[i] != '\0')
 	{
 		if (ft_isupper(fig[i]) && (map[index] != '.' || map[index] == fig[i]))
 			return (0);

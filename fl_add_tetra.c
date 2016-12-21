@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
 
 static int	fl_isfree(char c)
 {
@@ -25,11 +24,11 @@ static void	fl_mark_extra_rows(char *buf)
 	int		i;
 
 	i = 0;
-	while(i < 16)
+	while (i < 16)
 	{
 		if (fl_isfree(buf[i]) && fl_isfree(buf[i + 1])
 		&& fl_isfree(buf[i + 2]) && fl_isfree(buf[i + 3]))
-				ft_memset(buf + i, '*', 5);
+			ft_memset(buf + i, '*', 5);
 		i += 5;
 	}
 	buf[20] = '\0';
@@ -56,16 +55,16 @@ static void	fl_mark_extra_cols(char *buf)
 	int		i;
 
 	i = 0;
-	while(i < 4)
+	while (i < 4)
 	{
 		if (fl_isfree(buf[i]) && fl_isfree(buf[i + 5])
-		&& fl_isfree(buf[i + 10]) && fl_isfree(buf[i + 15]))
-			{
-				buf[i] = '*';
-				buf[i + 5] = '*';
-				buf[i + 10] = '*';
-				buf[i + 15] = '*';
-			}
+			&& fl_isfree(buf[i + 10]) && fl_isfree(buf[i + 15]))
+		{
+			buf[i] = '*';
+			buf[i + 5] = '*';
+			buf[i + 10] = '*';
+			buf[i + 15] = '*';
+		}
 		i++;
 	}
 }

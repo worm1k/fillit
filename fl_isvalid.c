@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include "libft.h"
 
 static int		fl_is4x4(char *buf)
 {
@@ -84,9 +83,9 @@ int				fl_isvalid(char *buf)
 {
 	if (fl_is4x4(buf))
 	{
-		if(fl_has_right_chars(buf))
+		if (fl_has_right_chars(buf))
 		{
-			if(fl_tetramine(buf))
+			if (fl_tetramine(buf))
 			{
 				return (1);
 			}
