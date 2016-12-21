@@ -1,9 +1,21 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fl_isvalid.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/21 13:52:48 by abykov            #+#    #+#             */
+/*   Updated: 2016/11/21 13:52:48 by abykov           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "fillit.h"
 #include "libft.h"
 
 static int		fl_is4x4(char *buf)
 {
-	if (strlen(buf) < 20)
+	if (ft_strlen(buf) < 20)
 		return (0);
 	if (buf[4] != '\n'
 		|| buf[9] != '\n'
@@ -76,7 +88,6 @@ int				fl_isvalid(char *buf)
 		{
 			if(fl_tetramine(buf))
 			{
-				printf("3. Joins: OK\n");
 				return (1);
 			}
 		}

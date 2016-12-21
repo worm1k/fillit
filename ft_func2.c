@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fl_generate_map.c                                  :+:      :+:    :+:   */
+/*   ft_func2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,39 +10,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
 #include "libft.h"
 
-void		fl_realloc(char **map, int n)
+void		ft_putchar_fd(char c, int fd)
 {
-	free(*map);
-	*map = fl_generate_nmap(n, n);
-	//printf("GENERATED%d\n", n);
+	write(fd, &c, 1);
 }
 
-char		*fl_getmap(int n)
+void		ft_putstr_fd(char const *s, int fd)
 {
-	return (fl_generate_nmap(n, n));
+	int 	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }
 
-char		*fl_generate_nmap(int x, int y)
+char		*ft_strcpy(char *dst, const char *src)
 {
-	char	*res;
-	int		len;
+	size_t	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
+
+int			ft_strlen(const char *s)
+{
 	int		i;
 
-	len = (x + 1) * y;
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
-	res = (char *)malloc(sizeof(char) * (len + 1));
+char		*ft_strdup(const char *s1)
+{
+	char	*res;
+	size_t	len;
+
+	len = ft_strlen(s1);
+	res = (char *)malloc(sizeof(char) * len + 1);
 	if (!res)
-		return (0);
-	ft_memset(res, '.', len);
-	res[len] = '\0';
-	i = x;
-	while (i < len)
-	{
-		res[i] = '\n';
-		i += x + 1;
-	}
+		return (NULL);
+	ft_strcpy(res, s1);
 	return (res);
 }

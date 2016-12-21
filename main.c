@@ -1,5 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/21 13:52:48 by abykov            #+#    #+#             */
+/*   Updated: 2016/11/21 13:52:48 by abykov           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
-#include "libft.h"
+#include <time.h>
+int			fl_sqrt(int n)
+{
+	int i;
+
+	i = 0;
+	while (i * i <= n)
+	{
+		i++;
+	}
+	return (i - 1);
+}
 
 int			isvalid(char const *path, int fd)
 {
@@ -30,28 +53,34 @@ int			isvalid(char const *path, int fd)
 	return (0);
 }
 
-void		fl_read(char const *path, t_lst **head)
+int			fl_read(char const *path, t_lst **head)
 {
 	char	buf[22];
 	int		len;
 	int		fd;
 	char	letter;
+	int		count;
 
-	ft_bzero(buf, 22);
 	fd = open(path, O_RDONLY);
-	letter = 'A';
+	ft_bzero(buf, 22);
 	len = read(fd, buf, 21);
+	letter = 'A';
+	count = 0;
 	while (len)
 	{
+		count++;
 		fl_add_tetra(head, buf, letter++);
 		ft_bzero(buf, 21);
 		len = read(fd, buf, 21);
 	}
 	close(fd);
+	return (count);
 }
 
 int			main(int argc, char **argv)
 {
+	clock_t	begin = clock();
+	double	spent;
 	t_lst	*head;
 	char	*map;
 	int		n;
@@ -62,8 +91,6 @@ int			main(int argc, char **argv)
 		ft_putendl_fd("usage: ./fillit source_file", 2);
 		return (1);
 	}
-	n = 2;
-	map = fl_getmap(n);
 	head = 0;
 	if (isvalid(argv[1], fd = -1))
 		fl_read(argv[1], &head);
@@ -72,8 +99,12 @@ int			main(int argc, char **argv)
 		ft_putendl_fd("Input error: Invalid last character", 2);
 		return (1);
 	}
+	n = 2;
+	map = fl_getmap(n);
 	while (!fl_solve(map, n, head))
 		fl_realloc(&map, ++n);
-	printf("%s\n", map);
+	ft_putstr(map);
+	spent = (double)(clock() - begin) / CLOCKS_PER_SEC;
+	printf("SPENT:[%f]\n", spent);
 	return (0);
 }

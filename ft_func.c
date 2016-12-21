@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fl_generate_map.c                                  :+:      :+:    :+:   */
+/*   ft_func.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,39 +10,62 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
 #include "libft.h"
 
-void		fl_realloc(char **map, int n)
+void				ft_bzero(void *b, size_t n)
 {
-	free(*map);
-	*map = fl_generate_nmap(n, n);
-	//printf("GENERATED%d\n", n);
-}
+	unsigned char	*p;
 
-char		*fl_getmap(int n)
-{
-	return (fl_generate_nmap(n, n));
-}
-
-char		*fl_generate_nmap(int x, int y)
-{
-	char	*res;
-	int		len;
-	int		i;
-
-	len = (x + 1) * y;
-
-	res = (char *)malloc(sizeof(char) * (len + 1));
-	if (!res)
-		return (0);
-	ft_memset(res, '.', len);
-	res[len] = '\0';
-	i = x;
-	while (i < len)
+	p = b;
+	while (n > 0)
 	{
-		res[i] = '\n';
-		i += x + 1;
+		*p = 0;
+		p++;
+		n--;
 	}
-	return (res);
+}
+
+int					ft_isupper(int c)
+{
+	if ('A' <= c && c <= 'Z')
+		return (1);
+	return (0);
+}
+
+void				*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*p;
+
+	p = (unsigned char *)b;
+	while (len > 0)
+	{
+		*p = c;
+		p++;
+		len--;
+	}
+	return (b);
+}
+
+void				ft_putendl_fd(char const *s, int fd)
+{
+	if (!s)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
+}
+
+char				*ft_strchr(const char *s, int c)
+{
+	size_t			i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (0);
 }

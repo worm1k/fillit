@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fl_add_tetra.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abykov <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/11/21 13:52:48 by abykov            #+#    #+#             */
+/*   Updated: 2016/11/21 13:52:48 by abykov           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
 
-int			fl_isfree(char c)
+static int	fl_isfree(char c)
 {
 	if (c == '.' || c == '*')
 		return (1);
 	return (0);
 }
 
-void		fl_mark_extra_rows(char *buf)
+static void	fl_mark_extra_rows(char *buf)
 {
 	int		i;
 
@@ -24,7 +35,23 @@ void		fl_mark_extra_rows(char *buf)
 	buf[20] = '\0';
 }
 
-void		fl_mark_extra_cols(char *buf)
+static int	fl_get_height(char *buf)
+{
+	int		i;
+	int		res;
+
+	res = 0;
+	i = 0;
+	while (buf[i])
+	{
+		if (buf[i] == '\n')
+			res++;
+		i++;
+	}
+	return (res);
+}
+
+static void	fl_mark_extra_cols(char *buf)
 {
 	int		i;
 
@@ -65,7 +92,7 @@ void		fl_add_tetra(t_lst **lst, char *buf, char letter)
 		}
 		i++;
 	}
-	printf("ADDING:\n%s======\n", res);
+	//printf("ADDING:\n%s======\n", res);
 	len = ft_strchr(res, '\n') - res;
-	fl_lstpush_back(lst, fl_tetranew(res, len, fl_get_height(res)));
+	fl_lst_pushback(lst, fl_tetranew(res, len, fl_get_height(res)));
 }
