@@ -60,4 +60,5 @@ int					ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
 void				ft_putchar(char c);
 void				ft_putstr(char const *s);
+void				fl_clean(char *map, t_lst **lst);
 #endif

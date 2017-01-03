@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <time.h>
 
 int			fl_sqrt(int n)
 {
@@ -108,5 +107,6 @@ int			main(int argc, char **argv)
 	while (!fl_solve(map, n, head))
 		fl_realloc(&map, ++n);
 	ft_putstr(map);
+	fl_clean(map, &head);
 	return (0);
 }

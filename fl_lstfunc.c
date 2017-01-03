@@ -35,7 +35,7 @@ t_tetra			*fl_tetranew(char *buf, int len, int hei)
 
 void			fl_print_lst(t_lst *lst)
 {
-	int 		i;
+	int			i;
 
 	i = 0;
 	while (lst)
@@ -60,4 +60,25 @@ void			fl_lst_pushback(t_lst **lst, t_tetra *tetra)
 	}
 	(*lst)->next = fl_lstnew(tetra);
 	*lst = tmp;
+}
+
+void			fl_clean(char *map, t_lst **lst)
+{
+	t_lst		*tmp;
+
+	tmp = *lst;
+	if (map)
+	{
+		free(map);
+	}
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		if ((*lst)->tetra->str)
+			free((*lst)->tetra->str);
+		if ((*lst)->tetra)
+			free((*lst)->tetra);
+		free(*lst);
+		*lst = tmp;
+	}
 }
