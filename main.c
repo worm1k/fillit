@@ -34,7 +34,7 @@ int			isvalid(char const *path, int fd)
 	ft_bzero(buf, 22);
 	if ((fd = open(path, O_RDONLY)) < 0)
 	{
-		ft_putendl_fd("file does not exist", 2);
+		ft_putendl_fd("error", 1);
 		exit(1);
 	}
 	len = read(fd, buf, 21);
@@ -42,7 +42,7 @@ int			isvalid(char const *path, int fd)
 	{
 		if (len < 20 || !fl_isvalid(buf))
 		{
-			ft_putendl_fd("Invalid input", 2);
+			ft_putendl_fd("error", 1);
 			exit(1);
 		}
 		last = buf[20];
@@ -65,6 +65,11 @@ int			fl_read(char const *path, t_lst **head)
 	fd = open(path, O_RDONLY);
 	ft_bzero(buf, 22);
 	len = read(fd, buf, 21);
+	if (len == 0)
+	{
+		ft_putendl_fd("error", 1);
+		exit(1);
+	}
 	letter = 'A';
 	count = 0;
 	while (len)
@@ -80,8 +85,6 @@ int			fl_read(char const *path, t_lst **head)
 
 int			main(int argc, char **argv)
 {
-	clock_t	begin = clock();
-	double	spent;
 	t_lst	*head;
 	char	*map;
 	int		n;
@@ -89,7 +92,7 @@ int			main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_putendl_fd("usage: ./fillit source_file", 2);
+		ft_putendl_fd("usage: ./fillit source_file", 1);
 		return (1);
 	}
 	head = 0;
@@ -97,7 +100,7 @@ int			main(int argc, char **argv)
 		fl_read(argv[1], &head);
 	else
 	{
-		ft_putendl_fd("Input error: Invalid last character", 2);
+		ft_putendl_fd("error", 1);
 		return (1);
 	}
 	n = 2;
@@ -105,7 +108,5 @@ int			main(int argc, char **argv)
 	while (!fl_solve(map, n, head))
 		fl_realloc(&map, ++n);
 	ft_putstr(map);
-	spent = (double)(clock() - begin) / CLOCKS_PER_SEC;
-	printf("SPENT:[%f]\n", spent);
 	return (0);
 }

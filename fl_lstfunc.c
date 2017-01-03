@@ -40,9 +40,6 @@ void			fl_print_lst(t_lst *lst)
 	i = 0;
 	while (lst)
 	{
-		//printf("#%d:\n", i++);
-		//printf("%s\n", lst->tetra->str);
-		//printf("==========\n");
 		lst = lst->next;
 	}
 }
@@ -54,17 +51,13 @@ void			fl_lst_pushback(t_lst **lst, t_tetra *tetra)
 	tmp = *lst;
 	if (!*lst)
 	{
-		//printf("CREATED\n");
 		*lst = fl_lstnew(tetra);
-		//printf("%s========\n", tetra->str);
 		return ;
 	}
 	while ((*lst)->next)
 	{
 		*lst = (*lst)->next;
 	}
-	//printf("PUSHED\n");
 	(*lst)->next = fl_lstnew(tetra);
-	//printf("%s========\n", (*lst)->next->tetra->str);
 	*lst = tmp;
 }

@@ -91,7 +91,6 @@ void		fl_add_tetra(t_lst **lst, char *buf, char letter)
 		}
 		i++;
 	}
-	//printf("ADDING:\n%s======\n", res);
 	len = ft_strchr(res, '\n') - res;
 	fl_lst_pushback(lst, fl_tetranew(res, len, fl_get_height(res)));
 }
